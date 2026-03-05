@@ -904,6 +904,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Botão Flutuante Exclusivo Mobile */
+        .floating-btn {
+            display: none;
+        }
+
         /* Responsividade */
         @media (max-width: 992px) {
             .contato-grid {
@@ -932,15 +937,19 @@
                 display: block;
             }
 
-            /* Botão Flutuante no Mobile */
+            /* Esconde o botão do header no mobile */
             .header-btn {
+                display: none !important;
+            }
+
+            /* Exibe o botão flutuante no canto inferior direito */
+            .floating-btn {
+                display: inline-flex;
                 position: fixed;
                 bottom: 20px;
                 right: 20px;
-                z-index: 1000;
+                z-index: 9999;
                 box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-                padding: 1rem 1.5rem !important; /* Facilita o clique no celular */
-                font-size: 1rem !important;
             }
 
             .section-title {
@@ -979,34 +988,10 @@
                 line-height: 1.2;
             }
 
-            /* Cards de Comparativo: Lado a Lado no Mobile */
+            /* Cards de Comparativo: Um embaixo do outro no Mobile */
             .comparativo-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-            .comp-card {
-                padding: 1.5rem 1rem;
-            }
-            .comp-card h3 {
-                font-size: 1.1rem;
-                margin-bottom: 1.5rem;
-            }
-            .comp-list li {
-                font-size: 0.8rem;
-                padding-left: 1.5rem;
-                margin-bottom: 1rem;
-            }
-            .comp-list li::before {
-                font-size: 0.8rem;
-                top: 0;
-            }
-            .comp-badge {
-                font-size: 0.65rem;
-                padding: 0.35rem 0.75rem;
-            }
-            .destaque-aulas {
-                font-size: 0.8rem;
-                padding: 0.75rem;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
     </style>
@@ -1615,5 +1600,11 @@
 
         initQuiz();
     </script>
+
+    <!-- Botão Flutuante Exclusivo Mobile -->
+    <a href="https://wa.me/554888515077?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20aula%20agora!" target="_blank" class="btn btn-primary floating-btn">
+        Agende sua aula agora!
+    </a>
+
 </body>
 </html>
