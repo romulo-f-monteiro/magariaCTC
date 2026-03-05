@@ -942,14 +942,20 @@
                 display: none !important;
             }
 
-            /* Exibe o botão flutuante no canto inferior direito */
+            /* Exibe o botão flutuante no canto inferior direito de forma mais discreta */
             .floating-btn {
                 display: inline-flex;
+                flex-direction: column;
                 position: fixed;
                 bottom: 20px;
                 right: 20px;
                 z-index: 9999;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra mais suave */
+                padding: 0.6rem 1.2rem !important; /* Menos preenchimento */
+                font-size: 0.85rem !important; /* Fonte menor */
+                line-height: 1.2;
+                text-align: center;
+                border-radius: var(--radius-full);
             }
 
             .section-title {
@@ -1602,8 +1608,8 @@
     </script>
 
     <!-- Botão Flutuante Exclusivo Mobile -->
-    <a href="https://wa.me/554888515077?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20aula%20agora!" target="_blank" class="btn btn-primary floating-btn">
-        Agende sua aula agora!
+    <a href="https://wa.me/554888515077?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20aula!" target="_blank" class="btn btn-primary floating-btn">
+        Agende sua<br>aula
     </a>
 
 </body>
