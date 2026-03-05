@@ -48,7 +48,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 145px; /* Compensa o menu e a barra congelada */
+            scroll-padding-top: 145px;
         }
 
         body {
@@ -56,7 +56,7 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            overflow-x: clip; /* Permite que o position: sticky da barra funcione */
+            overflow-x: clip;
         }
 
         a {
@@ -74,13 +74,11 @@
             display: block;
         }
 
-        /* Acessibilidade - Foco Visível */
         *:focus-visible {
             outline: 3px solid var(--primary);
             outline-offset: 2px;
         }
 
-        /* Tipografia Premium */
         h1, h2, h3, h4 {
             font-weight: 700;
             line-height: 1.2;
@@ -138,7 +136,6 @@
             background: var(--surface-alt);
         }
 
-        /* Container Padrão */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -150,7 +147,7 @@
             padding: 5rem 0;
         }
 
-        /* Animações On-Scroll (Intersection Observer) */
+        /* Animações On-Scroll */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -231,7 +228,7 @@
 
         .typewriter-container {
             height: 2rem;
-            margin-bottom: 1rem;
+            margin-bottom: 3.5rem; /* Aumentado o afastamento do título principal */
         }
 
         .typewriter {
@@ -316,9 +313,10 @@
             color: var(--white);
             padding: 1.5rem 0;
             position: sticky;
-            top: 71px; /* Gruda logo abaixo do header */
+            top: 71px;
             z-index: 990;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 4rem; /* Afastado da seção instrutores */
         }
 
         .marquee-content {
@@ -349,10 +347,14 @@
 
         @keyframes marquee {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Movimenta exatos 50% por causa da duplicação */
+            100% { transform: translateX(-50%); }
         }
 
         /* Instrutores Section */
+        #instrutores {
+            padding-top: 2rem;
+        }
+        
         .instrutores-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -459,6 +461,11 @@
         }
 
         /* Como Funciona Section (Comparativo) */
+        #como-funciona {
+            margin-top: 3rem;
+            padding-top: 6rem; /* Distanciamento maior da seção anterior */
+        }
+
         .comparativo-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -899,18 +906,43 @@
 
         /* Responsividade */
         @media (max-width: 992px) {
-            .comparativo-grid, .contato-grid {
+            .contato-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
+            /* Navbar e Botões no Header Mobile */
             .nav-links {
-                display: none; /* Em um projeto real, aqui entra o menu mobile (hamburguer) */
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 1.5rem 0;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+                border-top: 1px solid var(--surface-alt);
+            }
+            .nav-links.active {
+                display: flex;
             }
             .mobile-menu-btn {
                 display: block;
             }
+
+            /* Botão Flutuante no Mobile */
+            .header-btn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+                padding: 1rem 1.5rem !important; /* Facilita o clique no celular */
+                font-size: 1rem !important;
+            }
+
             .section-title {
                 font-size: 2rem;
             }
@@ -921,7 +953,7 @@
                 padding: 0 1rem;
             }
             .carousel-btn {
-                display: none; /* Esconde setas no mobile para usar swipe/dots */
+                display: none;
             }
             .marquee-wrapper {
                 top: 70px;
@@ -929,6 +961,52 @@
             }
             .hero {
                 padding-top: 7rem;
+            }
+
+            /* Métricas: Lado a Lado no Mobile */
+            .metricas-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+            .metrica-card {
+                padding: 1.5rem 0.5rem;
+            }
+            .metrica-valor {
+                font-size: 1.5rem; /* Ajustado para caber */
+            }
+            .metrica-titulo {
+                font-size: 0.8rem;
+                line-height: 1.2;
+            }
+
+            /* Cards de Comparativo: Lado a Lado no Mobile */
+            .comparativo-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .comp-card {
+                padding: 1.5rem 1rem;
+            }
+            .comp-card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+            .comp-list li {
+                font-size: 0.8rem;
+                padding-left: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .comp-list li::before {
+                font-size: 0.8rem;
+                top: 0;
+            }
+            .comp-badge {
+                font-size: 0.65rem;
+                padding: 0.35rem 0.75rem;
+            }
+            .destaque-aulas {
+                font-size: 0.8rem;
+                padding: 0.75rem;
             }
         }
     </style>
@@ -947,8 +1025,8 @@
                 <a href="#quiz">Quiz</a>
                 <a href="#contato">Contato</a>
             </nav>
-            <a href="https://wa.me/554888515077?text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20minha%20carteira%20%3A)" target="_blank" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;">
-                Falar no WhatsApp
+            <a href="https://wa.me/554888515077?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20aula%20agora!" target="_blank" class="btn btn-primary header-btn" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;">
+                Agende sua aula agora!
             </a>
             <button class="mobile-menu-btn" aria-label="Menu">☰</button>
         </div>
@@ -1228,6 +1306,9 @@
             <div class="footer-note">
                 <p>Magia Centro de Treinamento de Condutores. Instrutores credenciados pelo Detran.</p>
                 <p style="margin-top: 0.5rem;">Atendimento em Florianópolis (Centro e Norte da Ilha). Consulte disponibilidade de horários.</p>
+                <p style="margin-top: 2rem; font-size: 0.95rem; color: #a1a1aa;">
+                    Criado por <a href="https://www.instagram.com/romulof.monteiro/" target="_blank" style="color: var(--primary); text-decoration: underline;">Rômulo F. Monteiro</a>
+                </p>
             </div>
         </div>
     </footer>
@@ -1236,24 +1317,48 @@
          JAVASCRIPT (Lógica e Interatividade)
          ========================================== -->
     <script>
-        // --- 1. TYPEWRITER EFFECT ---
+        // --- 1. TYPEWRITER EFFECT (COM LOOP) ---
         const textToType = "Você sonha. Nós te ajudamos a dirigir esse sonho.";
         const typeContainer = document.getElementById('typewriterText');
         let typeIndex = 0;
+        let isTyping = true;
 
         function typeWriter() {
-            if (typeIndex < textToType.length) {
-                typeContainer.innerHTML += textToType.charAt(typeIndex);
-                typeIndex++;
-                setTimeout(typeWriter, 60); // Velocidade da digitação
+            if (isTyping) {
+                if (typeIndex < textToType.length) {
+                    typeContainer.innerHTML += textToType.charAt(typeIndex);
+                    typeIndex++;
+                    setTimeout(typeWriter, 60); // Velocidade da digitação
+                } else {
+                    isTyping = false;
+                    setTimeout(typeWriter, 3000); // Pausa 3 segundos antes de apagar
+                }
+            } else {
+                // Apaga o texto e reinicia o loop
+                typeContainer.innerHTML = "";
+                typeIndex = 0;
+                isTyping = true;
+                setTimeout(typeWriter, 500); // Pausinha antes de re-digitar
             }
         }
-        // Inicia após um pequeno delay para a página renderizar
         setTimeout(typeWriter, 500);
+
+        // --- 1.5. MENU MOBILE TOGGLE ---
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        // Fecha o menu ao clicar num link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
 
         // --- 2. MARQUEE INFINITO (Duplicação para loop perfeito) ---
         const marqueeContent = document.getElementById('marqueeContent');
-        // Clona o conteúdo para criar a ilusão de loop sem quebras
         marqueeContent.innerHTML += marqueeContent.innerHTML;
 
         // --- 3. ANIMAÇÕES ON SCROLL (Intersection Observer) ---
@@ -1267,7 +1372,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Anima apenas 1 vez
+                    observer.unobserve(entry.target); 
                 }
             });
         }, observerOptions);
@@ -1300,7 +1405,6 @@
         const dotsContainer = document.getElementById('carouselDots');
         let currentSlide = 0;
 
-        // Renderizar depoimentos
         depoimentosData.forEach((dep, index) => {
             const card = document.createElement('div');
             card.className = 'depoimento-card';
@@ -1321,8 +1425,6 @@
         function goToSlide(index) {
             currentSlide = index;
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            // Atualizar dots
             document.querySelectorAll('.dot').forEach((dot, i) => {
                 dot.classList.toggle('active', i === currentSlide);
             });
@@ -1340,7 +1442,6 @@
             goToSlide(next);
         });
 
-        // Autoplay simples pro carrossel
         setInterval(() => {
             let next = currentSlide + 1;
             if (next >= depoimentosData.length) next = 0;
@@ -1455,13 +1556,12 @@
         }
 
         function selectOption(selectedIndex, btnElement) {
-            if (answerSelected) return; // Impede duplo clique
+            if (answerSelected) return; 
             answerSelected = true;
 
             const q = questions[currentQIndex];
             const isCorrect = selectedIndex === q.correct;
             
-            // Desabilita todos os botões
             const allButtons = quizOptionsBox.querySelectorAll('.quiz-option');
             allButtons.forEach((b, i) => {
                 b.disabled = true;
@@ -1513,9 +1613,7 @@
             }
         }
 
-        // Iniciar quiz ao carregar
         initQuiz();
-
     </script>
 </body>
 </html>
